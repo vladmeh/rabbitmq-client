@@ -20,10 +20,7 @@ class Publisher extends AbstractRabbit
     {
         $this->getConnection()->set_close_on_destruct();
 
-        $msg = new AMQPMessage($message, [
-            'content_type' => 'text/plain',
-            'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT
-        ]);
+        $msg = new AMQPMessage($message, $this->getProperty('message'));
 
         $this->getChannel()->basic_publish(
             $msg,

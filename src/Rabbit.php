@@ -16,36 +16,36 @@ class Rabbit
      * @param string $message
      * @param string $exchange
      * @param string $routing_key
-     * @param array $options
+     * @param array $parameters
      * @return Publisher
      * @throws BindingResolutionException
      */
-    public function publish(string $message, string $exchange, string $routing_key, array $options = []): Publisher
+    public function publish(string $message, string $exchange, string $routing_key, array $parameters = []): Publisher
     {
-        return (new Publisher($options))->publish($message, $exchange, $routing_key);
+        return (new Publisher($parameters))->publish($message, $exchange, $routing_key);
     }
 
     /**
      * @param string $queue
      * @param Closure $callback
-     * @param array $options
-     * @return void
+     * @param array $parameters
+     * @return Consumer
      * @throws BindingResolutionException
      */
-    public function consume(string $queue, Closure $callback, $options = []): void
+    public function consume(string $queue, Closure $callback, $parameters = []): Consumer
     {
-        (new Consumer($options))->consume($queue, $callback);
+        return (new Consumer($parameters))->consume($queue, $callback);
     }
 
     /**
      * @param string $message
      * @param string $queue
-     * @param array $options
+     * @param array $parameters
      * @return string
      * @throws BindingResolutionException
      */
-    public function rpc(string $message, string $queue, array $options = []): string
+    public function rpc(string $message, string $queue, array $parameters = []): string
     {
-        return (new Rpc($options))->handle($message, $queue);
+        return (new Rpc($parameters))->handle($message, $queue);
     }
 }

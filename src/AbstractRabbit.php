@@ -103,8 +103,13 @@ abstract class AbstractRabbit
      * @param array $properties
      * @return void
      */
-    public function exchangeDeclare(string $exchange, array $properties)
+    public function exchangeDeclare(string $exchange, array $properties = [])
     {
+        $properties = array_replace_recursive(
+            $this->getProperty('exchange_declare'),
+            $properties
+        );
+
         $this->getChannel()->exchange_declare(
             $exchange,
             $properties['type'],
@@ -124,8 +129,13 @@ abstract class AbstractRabbit
         return $this->channel;
     }
 
-    public function queueDeclare(string $queue, array $properties)
+    public function queueDeclare(string $queue, array $properties = [])
     {
+        $properties = array_replace_recursive(
+            $this->getProperty('queue_declare'),
+            $properties
+        );
+
         $this->getChannel()->queue_declare(
             $queue,
             $properties['passive'],
@@ -144,8 +154,13 @@ abstract class AbstractRabbit
      * @param array $properties
      * @return void
      */
-    public function queueBind(string $queue, string $exchange, string $routing_key, array $properties)
+    public function queueBind(string $queue, string $exchange, string $routing_key, array $properties = [])
     {
+        $properties = array_replace_recursive(
+            $this->getProperty('queue_bind'),
+            $properties
+        );
+
         $this->getChannel()->queue_bind(
             $queue,
             $exchange,

@@ -16,26 +16,21 @@ class Consumer extends AbstractRabbit
     /**
      * @param string $queue
      * @param Closure $callback
-     * @return void
+     * @return self
      */
-    public function consume(string $queue, Closure $callback): void
+    public function consume(string $queue, Closure $callback): self
     {
         $this->getConnection()->set_close_on_destruct();
 
-        $this->getChannel()->queue_declare(
-            $queue,
-            $this->getProperty('queue_declare')['passive'],
-            $this->getProperty('queue_declare')['durable'],
-            $this->getProperty('queue_declare')['exclusive'],
-            $this->getProperty('queue_declare')['auto_delete'],
-            $this->getProperty('queue_declare')['nowait'],
-            $this->getProperty('queue_declare')['arguments']
+        $this->queueDeclare($queue);
+
+        $this->getChannel()->basic_qos(
+            $this->getProperty('qos')['prefetch_size'],
+            $this->getProperty('qos')['prefetch_count'],
+            $this->getProperty('qos')['a_global']
         );
 
         $object = $this;
-
-        $this->getChannel()->basic_qos(null, 1, null);
-
         $this->getChannel()->basic_consume(
             $queue,
             $this->getProperty('consume')['consumer_tag'],
@@ -58,17 +53,19 @@ class Consumer extends AbstractRabbit
                 abort(500, $e->getMessage());
             }
         }
+
+        return $this;
     }
 
     /**
      * @param AMQPMessage $message
+     * @param bool $cancel
      */
-    public function acknowledge(AMQPMessage $message): void
+    public function acknowledge(AMQPMessage $message, bool $cancel = false): void
     {
-        $message->delivery_info['channel']->basic_ack($message->delivery_info['delivery_tag']);
-
-//        if ($message->body === 'quit') {
-//            $message->delivery_info['channel']->basic_cancel($message->delivery_info['consumer_tag']);
-//        }
+        $message->ack();
+        if ($cancel && $message->getMessageCount() === null) {
+            $message->getChannel()->basic_cancel($message->getConsumerTag());
+        }
     }
 }
