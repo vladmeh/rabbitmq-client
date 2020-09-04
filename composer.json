@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Vladmeh\\RabbitMQ\\RabbitMQServiceProvider"
+                "Vladmeh\\RabbitMQ\\RabbitMQClientProvider"
             ],
             "aliases": {
                 "Rabbit": "Vladmeh\\RabbitMQ\\Facades\\Rabbit"

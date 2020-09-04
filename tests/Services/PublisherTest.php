@@ -2,6 +2,7 @@
 
 namespace Vladmeh\RabbitMQ\Tests\Services;
 
+use Exception;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Vladmeh\RabbitMQ\Facades\Rabbit;
@@ -47,7 +48,7 @@ class PublisherTest extends TestCase
         $this->publish->getChannel()->queue_purge(self::QUEUE);
         try {
             $this->publish->disconnect();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }

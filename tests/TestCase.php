@@ -6,7 +6,7 @@ namespace Vladmeh\RabbitMQ\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Vladmeh\RabbitMQ\Facades\Rabbit;
-use Vladmeh\RabbitMQ\RabbitMQServiceProvider;
+use Vladmeh\RabbitMQ\RabbitMQClientProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            RabbitMQServiceProvider::class
+            RabbitMQClientProvider::class
         ];
     }
 

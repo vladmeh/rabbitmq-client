@@ -4,7 +4,7 @@ namespace Vladmeh\RabbitMQ;
 
 use Illuminate\Support\ServiceProvider;
 
-class RabbitMQServiceProvider extends ServiceProvider
+class RabbitMQClientProvider extends ServiceProvider
 {
     /**
      * Register services.
