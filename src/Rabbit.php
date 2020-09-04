@@ -5,6 +5,7 @@ namespace Vladmeh\RabbitMQ;
 
 
 use Closure;
+use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Vladmeh\RabbitMQ\Services\Consumer;
 use Vladmeh\RabbitMQ\Services\Publisher;
@@ -30,7 +31,7 @@ class Rabbit
      * @param Closure $callback
      * @param array $parameters
      * @return Consumer
-     * @throws BindingResolutionException
+     * @throws Exception
      */
     public function consume(string $queue, Closure $callback, $parameters = []): Consumer
     {
@@ -46,6 +47,8 @@ class Rabbit
      */
     public function rpc(string $message, string $queue, array $parameters = []): string
     {
-        return (new Rpc($parameters))->handle($message, $queue);
+        return (new Rpc($parameters))
+            ->client($message, $queue)
+            ->getResponse();
     }
 }

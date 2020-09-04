@@ -30,9 +30,9 @@ class Rpc extends AbstractRabbit
     /**
      * @param $message
      * @param $queue
-     * @return string
+     * @return Rpc
      */
-    public function handle($message, $queue): string
+    public function client($message, $queue): self
     {
         $this->getConnection()->set_close_on_destruct();
         list($this->callback_queue, ,) = $this->getChannel()->queue_declare(
@@ -62,9 +62,9 @@ class Rpc extends AbstractRabbit
     /**
      * @param string $message
      * @param string $queue
-     * @return string
+     * @return Rpc|void
      */
-    private function call($message, $queue): string
+    private function call(string $message, string $queue)
     {
         $this->response = null;
         $this->corr_id = uniqid();
@@ -90,7 +90,7 @@ class Rpc extends AbstractRabbit
             return abort(500, $e->getMessage());
         }
 
-        return $this->response;
+        return $this;
     }
 
 
@@ -102,5 +102,13 @@ class Rpc extends AbstractRabbit
         if ($rep->get('correlation_id') == $this->corr_id) {
             $this->response = $rep->body;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponse(): string
+    {
+        return $this->response;
     }
 }

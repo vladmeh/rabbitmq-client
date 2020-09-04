@@ -6,7 +6,7 @@ namespace Vladmeh\RabbitMQ\Services;
 
 use Closure;
 use ErrorException;
-use Illuminate\Support\Arr;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use PhpAmqpLib\Message\AMQPMessage;
 use Vladmeh\RabbitMQ\AbstractRabbit;
@@ -17,6 +17,7 @@ class Consumer extends AbstractRabbit
      * @param string $queue
      * @param Closure $callback
      * @return self
+     * @throws Exception
      */
     public function consume(string $queue, Closure $callback): self
     {
@@ -45,9 +46,9 @@ class Consumer extends AbstractRabbit
             $this->getProperty('consumer')['arguments']
         );
 
-        while ($this->getChannel()->callbacks) {
+        while ($this->getChannel()->is_consuming()) {
             try {
-                $this->getChannel()->wait(null, false, Arr::get($this->getConnectOptions(), 'channel_rpc_timeout'));
+                $this->getChannel()->wait();
             } catch (ErrorException $e) {
                 Log::error($e->getMessage());
                 abort(500, $e->getMessage());
