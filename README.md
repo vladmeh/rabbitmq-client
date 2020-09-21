@@ -59,6 +59,24 @@ Rabbit::publish('message', '', 'queue-name');
 Rabbit::publish('message', 'exchange-name', 'routing-key');
 ```
 
+### Publish a message, with custom settings
+```php
+Rabbit::publish('message', 'amq.fanout', '', [
+    'hosts' => [
+        'vhosts' => 'vhost3'
+    ],
+    'message' => [
+        'content_type' => 'application/json',
+    ],
+    'exchange_declare' => [
+        'type' => 'fanout',
+        'auto_delete' => true,
+    ]
+]);
+```
+
+> All default settings are defined in `\config\rabbit.php`.
+
 ### Consumer
 #### Consume messages to an existing queue
 ```php
