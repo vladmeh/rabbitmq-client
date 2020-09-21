@@ -6,16 +6,16 @@ use Exception;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Vladmeh\RabbitMQ\Facades\Rabbit;
-use Vladmeh\RabbitMQ\Services\Publisher;
+use Vladmeh\RabbitMQ\Services\Producer;
 use Vladmeh\RabbitMQ\Tests\TestCase;
 
-class PublisherTest extends TestCase
+class ProducerTest extends TestCase
 {
 
     const QUEUE = 'default';
 
     /**
-     * @var Publisher
+     * @var Producer
      */
     public $publish;
 
@@ -54,11 +54,11 @@ class PublisherTest extends TestCase
     }
 
     /**
-     * @param Publisher $publish
+     * @param Producer $publish
      */
-    protected function assertConnection(Publisher $publish): void
+    protected function assertConnection(Producer $publish): void
     {
-        $this->assertInstanceOf(Publisher::class, $publish);
+        $this->assertInstanceOf(Producer::class, $publish);
         $this->assertInstanceOf(AMQPStreamConnection::class, $publish->getConnection());
         $this->assertInstanceOf(AMQPChannel::class, $publish->getChannel());
 

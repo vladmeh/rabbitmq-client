@@ -7,7 +7,7 @@ namespace Vladmeh\RabbitMQ\Services;
 use PhpAmqpLib\Message\AMQPMessage;
 use Vladmeh\RabbitMQ\AbstractRabbit;
 
-class Publisher extends AbstractRabbit
+class Producer extends AbstractRabbit
 {
 
     /**

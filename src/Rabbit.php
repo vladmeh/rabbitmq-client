@@ -8,7 +8,7 @@ use Closure;
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Vladmeh\RabbitMQ\Services\Consumer;
-use Vladmeh\RabbitMQ\Services\Publisher;
+use Vladmeh\RabbitMQ\Services\Producer;
 use Vladmeh\RabbitMQ\Services\Rpc;
 
 class Rabbit
@@ -18,12 +18,12 @@ class Rabbit
      * @param string $exchange
      * @param string $routing_key
      * @param array $parameters
-     * @return Publisher
+     * @return Producer
      * @throws BindingResolutionException
      */
-    public function publish(string $message, string $exchange, string $routing_key, array $parameters = []): Publisher
+    public function publish(string $message, string $exchange, string $routing_key, array $parameters = []): Producer
     {
-        return (new Publisher($parameters))->publish($message, $exchange, $routing_key);
+        return (new Producer($parameters))->publish($message, $exchange, $routing_key);
     }
 
     /**
