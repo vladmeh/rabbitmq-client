@@ -41,4 +41,9 @@ class MessageRequest
 
         return $message->asXML();
     }
+
+    public function __call($method, $parameters)
+    {
+        return static::$method($parameters);
+    }
 }
