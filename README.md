@@ -1,3 +1,7 @@
+[![Latest Stable Version](https://poser.pugx.org/vladmeh/rabbitmq-client/v)](//packagist.org/packages/vladmeh/rabbitmq-client)
+[![Total Downloads](https://poser.pugx.org/vladmeh/rabbitmq-client/downloads)](//packagist.org/packages/vladmeh/rabbitmq-client)
+[![License](https://poser.pugx.org/vladmeh/rabbitmq-client/license)](//packagist.org/packages/vladmeh/rabbitmq-client)
+
 # vladmeh/rabbitmq-client
 
 Wrapper to [php-amqplib](https://github.com/php-amqplib/php-amqplib) library for publishing and consuming [RabbitMQ](https://www.rabbitmq.com/tutorials/tutorial-six-php.html) messages using [Laravel framework](https://laravel.com/docs/6.x)
