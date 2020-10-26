@@ -33,6 +33,5 @@ class RpcTest extends TestCase
                 'Для теста необходим RabbitMQ RPC server'
             );
         }
-
     }
 }

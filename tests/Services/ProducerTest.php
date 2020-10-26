@@ -5,6 +5,7 @@ namespace Vladmeh\RabbitMQ\Tests\Services;
 use Exception;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Exception\AMQPIOException;
 use Vladmeh\RabbitMQ\Facades\Rabbit;
 use Vladmeh\RabbitMQ\Services\Producer;
 use Vladmeh\RabbitMQ\Tests\TestCase;
@@ -24,8 +25,14 @@ class ProducerTest extends TestCase
      */
     public function it_can_be_publish_message_in_the_existing_queue(): void
     {
-        $this->publish = Rabbit::publish('hello', '', self::QUEUE);
-        $this->assertConnection($this->publish);
+        try {
+            $this->publish = Rabbit::publish('hello', '', self::QUEUE);
+            $this->assertConnection($this->publish);
+        } catch (AMQPIOException $e) {
+            $this->markTestSkipped(
+                'Для теста необходимо установить RabbitMQ'
+            );
+        }
     }
 
     /**
@@ -33,8 +40,14 @@ class ProducerTest extends TestCase
      */
     public function it_can_be_publish_message_in_the_existing_exchange(): void
     {
-        $this->publish = Rabbit::publish('hello', 'default', self::QUEUE);
-        $this->assertConnection($this->publish);
+        try {
+            $this->publish = Rabbit::publish('hello', 'default', self::QUEUE);
+            $this->assertConnection($this->publish);
+        } catch (AMQPIOException $e) {
+            $this->markTestSkipped(
+                'Для теста необходимо установить RabbitMQ'
+            );
+        }
     }
 
     protected function setUp(): void
