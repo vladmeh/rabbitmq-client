@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ\Support;
-
 
 use SimpleXMLElement;
 
@@ -10,7 +8,8 @@ class MessageRequest
 {
     /**
      * @param string $type
-     * @param array $attributes
+     * @param array  $attributes
+     *
      * @return string
      */
     public static function xmlAttribute(string $type, array $attributes = []): string
@@ -27,7 +26,8 @@ class MessageRequest
 
     /**
      * @param string $type
-     * @param array $attributes
+     * @param array  $attributes
+     *
      * @return string
      */
     public static function xml(string $type, array $attributes = []): string

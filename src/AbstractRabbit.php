@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ;
-
 
 use Exception;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -32,7 +30,9 @@ abstract class AbstractRabbit
 
     /**
      * RabbitConnection constructor.
+     *
      * @param array $options
+     *
      * @throws BindingResolutionException
      */
     public function __construct(array $options)
@@ -65,6 +65,7 @@ abstract class AbstractRabbit
 
     /**
      * @param string $key
+     *
      * @return mixed|null
      */
     public function getProperty(string $key)
@@ -90,17 +91,20 @@ abstract class AbstractRabbit
 
     /**
      * @param array|mixed $properties
+     *
      * @return AbstractRabbit
      */
     public function setProperties(array $properties): self
     {
         $this->properties = array_replace_recursive($this->properties, $properties);
+
         return $this;
     }
 
     /**
      * @param string $exchange
-     * @param array $properties
+     * @param array  $properties
+     *
      * @return mixed|null
      */
     public function exchangeDeclare(string $exchange, array $properties = [])
@@ -131,7 +135,8 @@ abstract class AbstractRabbit
 
     /**
      * @param string $queue
-     * @param array $properties
+     * @param array  $properties
+     *
      * @return array|null
      */
     public function queueDeclare(string $queue, array $properties = [])
@@ -156,7 +161,8 @@ abstract class AbstractRabbit
      * @param string $queue
      * @param string $exchange
      * @param string $routing_key
-     * @param array $properties
+     * @param array  $properties
+     *
      * @return mixed|null
      */
     public function queueBind(string $queue, string $exchange, string $routing_key, array $properties = [])

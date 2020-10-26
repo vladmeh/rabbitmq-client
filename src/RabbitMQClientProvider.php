@@ -14,7 +14,8 @@ class RabbitMQClientProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/rabbit.php', 'rabbit'
+            __DIR__.'/../config/rabbit.php',
+            'rabbit'
         );
     }
 
@@ -28,7 +29,7 @@ class RabbitMQClientProvider extends ServiceProvider
         $this->app->bind('Rabbit', Rabbit::class);
 
         $this->publishes([
-            __DIR__ . '/../config/rabbit.php' => config_path('rabbit.php'),
+            __DIR__.'/../config/rabbit.php' => config_path('rabbit.php'),
         ], 'rabbit');
     }
 }

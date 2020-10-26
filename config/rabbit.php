@@ -2,11 +2,11 @@
 
 return [
     'hosts' => [
-        'host' => env('RABBITMQ_HOST', 'localhost'),
-        'port' => env('RABBITMQ_PORT', 5672),
-        'user' => env('RABBITMQ_USER', 'guest'),
+        'host'     => env('RABBITMQ_HOST', 'localhost'),
+        'port'     => env('RABBITMQ_PORT', 5672),
+        'user'     => env('RABBITMQ_USER', 'guest'),
         'password' => env('RABBITMQ_PASSWORD', 'guest'),
-        'vhost' => env('RABBITMQ_VHOST', '/')
+        'vhost'    => env('RABBITMQ_VHOST', '/'),
     ],
     'connection' => [],
 
@@ -45,11 +45,11 @@ return [
     'qos' => [
         'prefetch_size'     => null,
         'prefetch_count'    => 1,
-        'a_global'          => null
+        'a_global'          => null,
     ],
 
     'message' => [
         'content_type'      => 'text/plain',
-        'delivery_mode'     => 2
+        'delivery_mode'     => 2,
     ],
 ];

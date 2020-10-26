@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ\Services;
-
 
 use Closure;
 use ErrorException;
@@ -14,10 +12,12 @@ use Vladmeh\RabbitMQ\AbstractRabbit;
 class Consumer extends AbstractRabbit
 {
     /**
-     * @param string $queue
+     * @param string  $queue
      * @param Closure $callback
-     * @return self
+     *
      * @throws Exception
+     *
+     * @return self
      */
     public function consume(string $queue, Closure $callback): self
     {
@@ -60,7 +60,7 @@ class Consumer extends AbstractRabbit
 
     /**
      * @param AMQPMessage $message
-     * @param bool $cancel
+     * @param bool        $cancel
      */
     public function acknowledge(AMQPMessage $message, bool $cancel = false): void
     {

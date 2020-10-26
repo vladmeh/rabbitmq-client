@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ\Services;
-
 
 use ErrorException;
 use Illuminate\Support\Arr;
@@ -30,12 +28,13 @@ class Rpc extends AbstractRabbit
     /**
      * @param $message
      * @param $queue
+     *
      * @return Rpc
      */
     public function client($message, $queue): self
     {
         $this->getConnection()->set_close_on_destruct();
-        list($this->callback_queue, ,) = $this->getChannel()->queue_declare(
+        list($this->callback_queue) = $this->getChannel()->queue_declare(
             '',
             false,
             false,
@@ -52,7 +51,7 @@ class Rpc extends AbstractRabbit
             false,
             [
                 $this,
-                'onResponse'
+                'onResponse',
             ]
         );
 
@@ -62,6 +61,7 @@ class Rpc extends AbstractRabbit
     /**
      * @param string $message
      * @param string $queue
+     *
      * @return Rpc|void
      */
     private function call(string $message, string $queue)
@@ -73,7 +73,7 @@ class Rpc extends AbstractRabbit
             $message,
             [
                 'correlation_id' => $this->corr_id,
-                'reply_to' => $this->callback_queue
+                'reply_to'       => $this->callback_queue,
             ]
         );
 
@@ -87,12 +87,12 @@ class Rpc extends AbstractRabbit
             $this->getChannel()->wait(null, false, Arr::get($this->getConnectOptions(), 'channel_rpc_timeout'));
         } catch (ErrorException $e) {
             Log::error($e->getMessage());
+
             return abort(500, $e->getMessage());
         }
 
         return $this;
     }
-
 
     /**
      * @param AMQPMessage $rep

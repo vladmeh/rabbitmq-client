@@ -10,8 +10,9 @@ class Xml
     use Macroable;
 
     /**
-     * @param array $array
+     * @param array             $array
      * @param \SimpleXMLElement $xml
+     *
      * @return \SimpleXMLElement
      */
     public static function arrayToXmlAttribute(array $array, \SimpleXMLElement $xml)
@@ -26,6 +27,7 @@ class Xml
                 $xml->addAttribute($key, $value);
             }
         }
+
         return $xml->asXML();
     }
 
@@ -40,6 +42,7 @@ class Xml
 
     /**
      * @param \SimpleXMLElement|\SimpleXMLElement[] $xml
+     *
      * @return false|string
      */
     public static function toJson($xml)
@@ -50,7 +53,8 @@ class Xml
     /**
      * @param $data
      * @param null $result
-     * @param int $recursionDepth
+     * @param int  $recursionDepth
+     *
      * @return array|null
      */
     public static function toArray($data, &$result = null, &$recursionDepth = 0)
@@ -88,7 +92,6 @@ class Xml
                     $result = $temp;
                 }
             }
-
         } else {
             $result = $data;
         }

@@ -24,7 +24,6 @@ class ConsumerTest extends TestCase
      */
     public function it_can_be_listen_to_an_existing_queue(): void
     {
-
         try {
             $consumer = Rabbit::consume(self::QUEUE, function (AMQPMessage $msg) {
                 $msg->ack();
@@ -49,6 +48,7 @@ class ConsumerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         try {
             Rabbit::publish('hello', '', self::QUEUE);
         } catch (AMQPIOException $e) {
