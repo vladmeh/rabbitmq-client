@@ -12,7 +12,6 @@ use Vladmeh\RabbitMQ\Tests\TestCase;
 
 class ProducerTest extends TestCase
 {
-
     const QUEUE = 'default';
 
     /**
@@ -59,6 +58,7 @@ class ProducerTest extends TestCase
     {
         parent::tearDown();
         $this->publish->getChannel()->queue_purge(self::QUEUE);
+
         try {
             $this->publish->disconnect();
         } catch (Exception $e) {
@@ -78,5 +78,4 @@ class ProducerTest extends TestCase
         $this->assertTrue($publish->getConnection()->isConnected());
         $this->assertTrue($publish->getChannel()->is_open());
     }
-
 }

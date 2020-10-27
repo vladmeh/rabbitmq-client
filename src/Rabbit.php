@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ;
-
 
 use Closure;
 use Exception;
@@ -17,9 +15,11 @@ class Rabbit
      * @param string $message
      * @param string $exchange
      * @param string $routing_key
-     * @param array $parameters
-     * @return Producer
+     * @param array  $parameters
+     *
      * @throws BindingResolutionException
+     *
+     * @return Producer
      */
     public function publish(string $message, string $exchange, string $routing_key, array $parameters = []): Producer
     {
@@ -27,11 +27,13 @@ class Rabbit
     }
 
     /**
-     * @param string $queue
+     * @param string  $queue
      * @param Closure $callback
-     * @param array $parameters
-     * @return Consumer
+     * @param array   $parameters
+     *
      * @throws Exception
+     *
+     * @return Consumer
      */
     public function consume(string $queue, Closure $callback, $parameters = []): Consumer
     {
@@ -41,9 +43,11 @@ class Rabbit
     /**
      * @param string $message
      * @param string $queue
-     * @param array $parameters
-     * @return string
+     * @param array  $parameters
+     *
      * @throws BindingResolutionException
+     *
+     * @return string
      */
     public function rpc(string $message, string $queue, array $parameters = []): string
     {

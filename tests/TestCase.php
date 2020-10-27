@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ\Tests;
-
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Vladmeh\RabbitMQ\Facades\Rabbit;
@@ -13,22 +11,19 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            RabbitMQClientProvider::class
+            RabbitMQClientProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Rabbit' => Rabbit::class
+            'Rabbit' => Rabbit::class,
         ];
     }
-
-
 }
