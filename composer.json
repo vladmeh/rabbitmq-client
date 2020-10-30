@@ -1,6 +1,6 @@
 {
     "name": "vladmeh/rabbitmq-client",
-    "version": "1.2.x-dev",
+    "version": "1.2.0",
     "description": "Laravel RabbitMQ Client",
     "license": "MIT",
     "keywords": ["laravel", "RabbitMQ"],
