@@ -5,4 +5,12 @@ services:
   rabbitmq:
     image: rabbitmq
     ports:
-    - 5672:5672
+      - 5672:5672
+      - 15672:15672
+
+  rabbitmq-management:
+    image: rabbitmq:management
+    ports:
+      - 5672:5672
+      - 15672:15672
+

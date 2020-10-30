@@ -35,12 +35,25 @@ class ProducerTest extends TestCase
     }
 
     /**
+     * @param Producer $publish
+     */
+    protected function assertConnection(Producer $publish): void
+    {
+        $this->assertInstanceOf(Producer::class, $publish);
+        $this->assertInstanceOf(AMQPStreamConnection::class, $publish->getConnection());
+        $this->assertInstanceOf(AMQPChannel::class, $publish->getChannel());
+
+        $this->assertTrue($publish->getConnection()->isConnected());
+        $this->assertTrue($publish->getChannel()->is_open());
+    }
+
+    /**
      * @test
      */
     public function it_can_be_publish_message_in_the_existing_exchange(): void
     {
         try {
-            $this->publish = Rabbit::publish('hello', 'default', self::QUEUE);
+            $this->publish = Rabbit::publish('hello', 'amq.direct', self::QUEUE);
             $this->assertConnection($this->publish);
         } catch (AMQPIOException $e) {
             $this->markTestSkipped(
@@ -64,18 +77,5 @@ class ProducerTest extends TestCase
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-    }
-
-    /**
-     * @param Producer $publish
-     */
-    protected function assertConnection(Producer $publish): void
-    {
-        $this->assertInstanceOf(Producer::class, $publish);
-        $this->assertInstanceOf(AMQPStreamConnection::class, $publish->getConnection());
-        $this->assertInstanceOf(AMQPChannel::class, $publish->getChannel());
-
-        $this->assertTrue($publish->getConnection()->isConnected());
-        $this->assertTrue($publish->getChannel()->is_open());
     }
 }

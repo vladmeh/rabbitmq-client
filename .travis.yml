@@ -17,7 +17,12 @@ cache:
 #  - chmod +x docker-compose
 #  - sudo mv docker-compose /usr/local/bin
 
-before_script:
+before_install:
   - docker-compose up -d rabbitmq
+
+before_script:
   - travis_retry composer self-update
   - travis_retry composer update --no-progress --no-interaction --prefer-dist
+
+script:
+  - vendor/bin/phpunit -c phpunit.xml --testdox --verbose

@@ -50,11 +50,13 @@ class ConsumerTest extends TestCase
         parent::setUp();
 
         try {
-            Rabbit::publish('hello', '', self::QUEUE);
+            Rabbit::publish('hello', '', self::QUEUE)->disconnect();
         } catch (AMQPIOException $e) {
             $this->markTestSkipped(
                 'Для теста необходимо установить RabbitMQ'
             );
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
     }
 }
