@@ -4,8 +4,8 @@ php:
   - '7.2'
   - '7.3'
 
-services:
-  - docker
+#services:
+#  - docker
 
 cache:
   directories:
@@ -16,9 +16,7 @@ cache:
 #  - curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > docker-compose
 #  - chmod +x docker-compose
 #  - sudo mv docker-compose /usr/local/bin
-
-before_install:
-  - docker-compose up -d rabbitmq
+#  - docker-compose up -d rabbitmq
 
 before_script:
   - travis_retry composer self-update
@@ -26,3 +24,7 @@ before_script:
 
 script:
   - vendor/bin/phpunit -c phpunit.xml --testdox --verbose
+
+branches:
+  only:
+    - main
