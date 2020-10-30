@@ -1,9 +1,8 @@
-version: '3.7'
+version: '3'
 
 services:
 
   rabbitmq:
     image: rabbitmq
-
-  rabbitmq-management:
-    image: rabbitmq:management
+    ports:
+    - 5672:5672
