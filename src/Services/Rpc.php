@@ -32,7 +32,7 @@ class Rpc extends AbstractRabbit implements RpcClient
      *
      * @return Rpc
      */
-    public function client($message, $queue): self
+    public function request($message, $queue): self
     {
         $this->getConnection()->set_close_on_destruct();
         list($this->callback_queue) = $this->getChannel()->queue_declare(

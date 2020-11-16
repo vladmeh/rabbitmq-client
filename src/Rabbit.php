@@ -15,11 +15,11 @@ class Rabbit
      * @param string $message
      * @param string $exchange
      * @param string $routing_key
-     * @param array  $parameters
-     *
-     * @throws BindingResolutionException
+     * @param array $parameters
      *
      * @return Producer
+     * @throws BindingResolutionException
+     *
      */
     public function publish(string $message, string $exchange, string $routing_key, array $parameters = []): Producer
     {
@@ -27,13 +27,13 @@ class Rabbit
     }
 
     /**
-     * @param string  $queue
+     * @param string $queue
      * @param Closure $callback
-     * @param array   $parameters
-     *
-     * @throws Exception
+     * @param array $parameters
      *
      * @return Consumer
+     * @throws Exception
+     *
      */
     public function consume(string $queue, Closure $callback, $parameters = []): Consumer
     {
@@ -43,16 +43,16 @@ class Rabbit
     /**
      * @param string $message
      * @param string $queue
-     * @param array  $parameters
-     *
-     * @throws BindingResolutionException
+     * @param array $parameters
      *
      * @return string
+     * @throws BindingResolutionException
+     *
      */
     public function rpc(string $message, string $queue, array $parameters = []): string
     {
         return (new Rpc($parameters))
-            ->client($message, $queue)
+            ->request($message, $queue)
             ->getResponse();
     }
 }

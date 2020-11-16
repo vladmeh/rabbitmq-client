@@ -35,7 +35,7 @@ abstract class AbstractRabbit
      *
      * @throws BindingResolutionException
      */
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         if (config()->has(self::CONFIG_KEY)) {
             $this->properties = config(self::CONFIG_KEY);
@@ -103,7 +103,7 @@ abstract class AbstractRabbit
 
     /**
      * @param string $exchange
-     * @param array  $properties
+     * @param array $properties
      *
      * @return mixed|null
      */
@@ -135,7 +135,7 @@ abstract class AbstractRabbit
 
     /**
      * @param string $queue
-     * @param array  $properties
+     * @param array $properties
      *
      * @return array|null
      */
@@ -161,7 +161,7 @@ abstract class AbstractRabbit
      * @param string $queue
      * @param string $exchange
      * @param string $routing_key
-     * @param array  $properties
+     * @param array $properties
      *
      * @return mixed|null
      */
