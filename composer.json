@@ -1,6 +1,6 @@
 {
     "name": "vladmeh/rabbitmq-client",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Laravel RabbitMQ Client",
     "license": "MIT",
     "keywords": ["laravel", "RabbitMQ"],
@@ -11,7 +11,7 @@
             "email": "mihailov.v@fhclub.ru"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": "^7.2",
         "php-amqplib/php-amqplib": "^2.12",

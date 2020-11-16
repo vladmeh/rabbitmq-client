@@ -7,8 +7,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use PhpAmqpLib\Message\AMQPMessage;
 use Vladmeh\RabbitMQ\AbstractRabbit;
+use Vladmeh\RabbitMQ\Contracts\RpcClient;
 
-class Rpc extends AbstractRabbit
+class Rpc extends AbstractRabbit implements RpcClient
 {
     /**
      * @var string
@@ -73,7 +74,7 @@ class Rpc extends AbstractRabbit
             $message,
             [
                 'correlation_id' => $this->corr_id,
-                'reply_to'       => $this->callback_queue,
+                'reply_to' => $this->callback_queue,
             ]
         );
 
