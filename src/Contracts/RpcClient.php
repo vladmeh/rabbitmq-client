@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Vladmeh\RabbitMQ\Contracts;
-
 
 interface RpcClient
 {
@@ -17,4 +15,5 @@ interface RpcClient
      * @return mixed
      */
     public function getResponse();
+    
 }

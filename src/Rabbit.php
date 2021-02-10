@@ -19,7 +19,6 @@ class Rabbit
      *
      * @return Producer
      * @throws BindingResolutionException
-     *
      */
     public function publish(string $message, string $exchange, string $routing_key, array $parameters = []): Producer
     {
@@ -33,7 +32,6 @@ class Rabbit
      *
      * @return Consumer
      * @throws Exception
-     *
      */
     public function consume(string $queue, Closure $callback, $parameters = []): Consumer
     {
@@ -47,7 +45,6 @@ class Rabbit
      *
      * @return string
      * @throws BindingResolutionException
-     *
      */
     public function rpc(string $message, string $queue, array $parameters = []): string
     {
