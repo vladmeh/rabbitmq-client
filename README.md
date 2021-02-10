@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/vladmeh/rabbitmq-client.svg?branch=7.x)](https://travis-ci.org/vladmeh/rabbitmq-client)
+[![Build Status](https://travis-ci.org/vladmeh/rabbitmq-client.svg?branch=2.x)](https://travis-ci.org/vladmeh/rabbitmq-client)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/cb2107b6ab3b427cb043a23926e7b4ca)](https://www.codacy.com/gh/vladmeh/rabbitmq-client/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vladmeh/rabbitmq-client&amp;utm_campaign=Badge_Grade)
-[![StyleCI](https://github.styleci.io/repos/297304814/shield?branch=7.x)](https://github.styleci.io/repos/297304814?branch=7.x)
+[![StyleCI](https://github.styleci.io/repos/297304814/shield?branch=2.x)](https://github.styleci.io/repos/297304814?branch=2.x)
 [![Latest Stable Version](https://poser.pugx.org/vladmeh/rabbitmq-client/v)](//packagist.org/packages/vladmeh/rabbitmq-client)
 [![Total Downloads](https://poser.pugx.org/vladmeh/rabbitmq-client/downloads)](//packagist.org/packages/vladmeh/rabbitmq-client)
 [![License](https://poser.pugx.org/vladmeh/rabbitmq-client/license)](//packagist.org/packages/vladmeh/rabbitmq-client)
@@ -22,7 +22,7 @@ Wrapper to [php-amqplib](https://github.com/php-amqplib/php-amqplib) library for
 $ composer require vladmeh/rabbit-client 
 ```
 
-or add the following to your require part within the composer.json:
+or add the following to your requirement part within the composer.json:
 
 ```json
 {
