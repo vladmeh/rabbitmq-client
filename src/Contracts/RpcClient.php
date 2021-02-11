@@ -15,5 +15,4 @@ interface RpcClient
      * @return mixed
      */
     public function getResponse();
-    
 }
