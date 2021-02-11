@@ -15,7 +15,7 @@ use Vladmeh\RabbitMQ\Services\Producer;
  */
 class Rabbit extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'Rabbit';
     }

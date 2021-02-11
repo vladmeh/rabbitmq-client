@@ -35,7 +35,7 @@ class Rpc extends AbstractRabbit implements RpcClient
     public function request($message, $queue): self
     {
         $this->getConnection()->set_close_on_destruct();
-        list($this->callback_queue) = $this->getChannel()->queue_declare(
+        [$this->callback_queue] = $this->getChannel()->queue_declare(
             '',
             false,
             false,
@@ -65,7 +65,7 @@ class Rpc extends AbstractRabbit implements RpcClient
      *
      * @return Rpc|void
      */
-    private function call(string $message, string $queue)
+    private function call(string $message, string $queue): Rpc
     {
         $this->response = null;
         $this->corr_id = uniqid();
@@ -89,7 +89,7 @@ class Rpc extends AbstractRabbit implements RpcClient
         } catch (ErrorException $e) {
             Log::error($e->getMessage());
 
-            return abort(500, $e->getMessage());
+            abort(500, $e->getMessage());
         }
 
         return $this;
