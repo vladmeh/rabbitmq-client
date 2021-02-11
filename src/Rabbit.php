@@ -45,7 +45,6 @@ class Rabbit
      *
      * @return string
      * @throws BindingResolutionException
-     *
      */
     public function rpc(string $message, string $queue, array $parameters = []): string
     {
