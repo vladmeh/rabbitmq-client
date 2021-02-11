@@ -10,7 +10,7 @@
 Wrapper to [php-amqplib](https://github.com/php-amqplib/php-amqplib) library for publishing and consuming [RabbitMQ](https://www.rabbitmq.com/tutorials/tutorial-six-php.html) messages using [Laravel framework](https://laravel.com/docs/7.x)
 
 ## Features
-* php > v7.2.5
+* php v7.* 
 * [Laravel v7.*](https://laravel.com/docs/7.x)
 * [php-amqplib v2.12](https://github.com/php-amqplib/php-amqplib)
 
